@@ -67,6 +67,6 @@ module.exports = {
             .setImage('https://i.imgur.com/AfFp7pu.png')
             .setTimestamp()
             .setFooter(message.member.displayName, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
-        message.channel.send({ embed: menu });
+        message.channel.send({ embeds: [menu] });
     }
 };
