@@ -22,37 +22,38 @@ client.on('messageCreate', message => {
     let args = message.content.split(' ')[1];
 
     switch (command) {
-        case 'help':
-            if (args) {
-                switch (args) {
-                    case 'user':
-                        message.reply('Wow, including arguments, huh.');
-                        break;
-                    default:
-                        message.reply('Invalid argument. Expected a valid command and received \'' + args + '\'.');
-                }
-            }
-            else {
-                message.reply({ embeds: [embeds.help] });
-            }
-            break;
-        case 'user':
-            message.reply({ embeds: [embeds.user] });
-            break;
+        // case 'help':
+        //     if (args) {
+        //         switch (args) {
+        //             case 'user':
+        //                 message.reply('Wow, including arguments, huh.');
+        //                 break;
+        //             default:
+        //                 message.reply('Invalid argument. Expected a valid command and received \'' + args + '\'.');
+        //         }
+        //     }
+        //     else {
+        //         message.reply({ embeds: [embeds.help] });
+        //     }
+        //     break;
+        // case 'user':
+        //     message.reply({ embeds: [embeds.user] });
+        //     break;
         case 'menu':
-            let author = message.author.id;
-            message.reply({ embeds: [embeds.menu] }).then(message => {
-                let thisMessage = message;
-                message.react('🤔')
-                // message.react('')
-                // message.react('')
-                let filter = (reaction, user) => reaction.emoji.name === '🤔' && user.id === author;
-                let collector = message.createReactionCollector({ filter, time: 15000 });
-                collector.on('collect', r => {
-                    console.log(`Collected ${r.emoji.name}`)
-                    thisMessage.edit({ content: 'Success', embeds: [] });
-                });
-            });
+            // let author = message.author.id;
+            // message.reply({ embeds: [embeds.menu] }).then(message => {
+            //     let thisMessage = message;
+            //     message.react('🤔')
+            //     // message.react('')
+            //     // message.react('')
+            //     let filter = (reaction, user) => reaction.emoji.name === '🤔' && user.id === author;
+            //     let collector = message.createReactionCollector({ filter, time: 15000 });
+            //     collector.on('collect', r => {
+            //         console.log(`Collected ${r.emoji.name}`)
+            //         thisMessage.edit({ content: 'Success', embeds: [] });
+            //     });
+            // });
+            embeds.execute(message);
     }
 });
 
