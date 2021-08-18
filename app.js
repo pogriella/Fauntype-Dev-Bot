@@ -1,10 +1,7 @@
-const dotenv = require('dotenv');
-// const { token } = require('./config.json');
+const { token, prefix } = require('./config.json');
 const { Client, Intents } = require('discord.js');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-
-dotenv.config();
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES] });
 
 client.once('ready', () => {
 	if (client.guilds.cache.size > 1) {
@@ -13,14 +10,19 @@ client.once('ready', () => {
 	else {
 		console.log('Ready and watching ' + client.guilds.cache.size + ' guild');
 	}
+    client.user.setActivity('WIP');
 });
 
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
+client.on('messageCreate', message => {
+    if (!message.content.startsWith(prefix)) return;
 
-	if (interaction.commandName === 'ping') {
-		await interaction.reply('Pong!');
-	}
+    const command = message.content.split(prefix)[1];
+
+    switch (command) {
+        case 'hi':
+            message.reply('Hello!');
+            break;
+    }
 });
 
-client.login(process.env.TOKEN);
+client.login(token);
