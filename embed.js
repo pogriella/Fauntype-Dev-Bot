@@ -6,19 +6,33 @@ const help = {
     execute(message, args) {
         const { MessageEmbed } = require('discord.js');
         switch (args) {
-            case 'help':
+            case 'user':
+                const helpUser = new MessageEmbed()
+                    .setColor('#13b5ea')
+                    .setTitle('Help: `user`')
+                    .setDescription('`user` command')
+                    .addFields(
+                        { name: 'Command', value: '...user' },
+                        { name: 'Usage', value: user.usage },
+                        { name: 'What it does', value: user.description },
+                    )
+                    .setTimestamp()
+                    .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
+                message.channel.send({ embeds: [helpUser] });
                 break;
             default:
-                const help = new MessageEmbed()
+                const helpMain = new MessageEmbed()
                     .setColor('#13b5ea')
                     .setTitle('Help & Commands')
                     .setDescription('You can use this bot by typing the commands below.')
                     .addFields(
-                    { name: 'user', value: 'Shows stats for the Discord member who called the command' },
-                    { name: 'menu', value: 'Brings up the main menu' },
+                        { name: 'help', value: 'Brings up this menu' },
+                        { name: 'user', value: 'Shows stats for the Discord member who called the command' },
+                        { name: 'menu', value: 'Brings up the main menu' },
                     )
                     .setTimestamp()
-                message.channel.send({ embeds: [help] });
+                    .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
+                message.channel.send({ embeds: [helpMain] });
                 break;
         }
     }
@@ -39,10 +53,10 @@ const user = {
             .setDescription('Some description here')
             .setThumbnail('https://i.imgur.com/AfFp7pu.png')
             .addFields(
-            { name: 'Regular field title', value: 'Some value here' },
-            { name: '\u200B', value: '\u200B' },
-            { name: 'Inline field title', value: 'Some value here', inline: true },
-            { name: 'Inline field title', value: 'Some value here', inline: true },
+                { name: 'Regular field title', value: 'Some value here' },
+                { name: '\u200B', value: '\u200B' },
+                { name: 'Inline field title', value: 'Some value here', inline: true },
+                { name: 'Inline field title', value: 'Some value here', inline: true },
             )
             .addField('Inline field title', 'Some value here', true)
             .setImage('https://i.imgur.com/AfFp7pu.png')
@@ -65,15 +79,15 @@ const menu = {
             .setDescription('Some description here')
             .setThumbnail('https://i.imgur.com/AfFp7pu.png')
             .addFields(
-            { name: 'Regular field title', value: 'Some value here' },
-            { name: '\u200B', value: '\u200B' },
-            { name: 'Inline field title', value: 'Some value here', inline: true },
-            { name: 'Inline field title', value: 'Some value here', inline: true },
+                { name: 'Regular field title', value: 'Some value here' },
+                { name: '\u200B', value: '\u200B' },
+                { name: 'Inline field title', value: 'Some value here', inline: true },
+                { name: 'Inline field title', value: 'Some value here', inline: true },
             )
             .addField('Inline field title', 'Some value here', true)
             .setImage('https://i.imgur.com/AfFp7pu.png')
             .setTimestamp()
-            .setFooter(message.member.displayName, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
+            .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
         message.channel.send({ embeds: [menu] });
     }
 };
