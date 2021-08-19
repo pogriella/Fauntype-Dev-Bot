@@ -92,8 +92,40 @@ const menu = {
     }
 };
 
+const prune = {
+    name: 'prune',
+    description: 'Staff can use this command to delete messages in bulk.',
+    usage: '...prune [user] [number of messages]',
+    args: true,
+    execute(message, args, args2) {
+        const { MessageEmbed } = require('discord.js');
+        const prune = new MessageEmbed()
+                .setColor('#13b5ea')
+                .setTitle('Prune')
+                .setDescription('Time to prune!')
+                .setThumbnail('https://freepikpsd.com/media/2019/10/prunes-png-Transparent-Images.png')
+                .setTimestamp()
+                .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
+        if (!args || (typeof args === 'string' && !args2)) {
+            message.reply('Expected usage of this command is `...prune [user] [number of messages]`.');
+        } else{
+            if (args2) {
+                prune.addFields(
+                    { name: `Are you sure you want to delete ${args2} messages sent by ${args}?`, value: 'Select yes to confirm.' },
+                )
+            } else {
+                prune.addFields(
+                    { name: `Are you sure you want to delete ${args} messages?`, value: 'Select yes to confirm.' },
+                )
+            }
+            message.channel.send({ embeds: [prune] });
+        }
+    }
+}
+
 module.exports = {
     menu: menu,
     user: user,
     help: help,
+    prune: prune,
 };
