@@ -15,6 +15,12 @@ client.once('ready', () => {
     client.user.setPresence({ activities: [{ name: 'Gasper make his session plans...', type: 'WATCHING' }], status: 'online' });
 });
 
+client.on('guildMemberAdd', member => {
+    const role = member.guild.roles.cache.find(role => role.name === "Guest");
+
+    member.roles.add(role);
+});
+
 client.on('messageCreate', message => {
     if (!message.content.startsWith(prefix)) return;
 
