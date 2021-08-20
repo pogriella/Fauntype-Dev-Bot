@@ -17,8 +17,20 @@ client.once('ready', () => {
 
 client.on('guildMemberAdd', member => {
     const role = member.guild.roles.cache.find(role => role.name === "Guest");
+    const general = member.guild.channels.cache.find(channel => channel.name === "general");
 
     member.roles.add(role);
+    general.send(`Welcome to FaunType\'s Dev Server, ${member}`)
+});
+
+client.on('messageReactionAdd', reaction => {
+    let thisMessage = reaction.message.id;
+    switch (thisMessage) {
+        case 'hi':
+            break;
+    default:
+        break;
+    }
 });
 
 client.on('messageCreate', message => {
