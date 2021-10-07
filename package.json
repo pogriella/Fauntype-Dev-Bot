@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "discord.js": "^13.2.0-dev.1629245073.93a83c2",
-    "dotenv": "^10.0.0",
-    "jquery": "^3.6.0",
-    "save": "^2.4.0"
-  }
-}
