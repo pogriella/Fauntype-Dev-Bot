@@ -1,4 +1,3 @@
-const { MessageFlags } = require('discord.js');
 const embeds = require('./embed.js');
 
 module.exports = {
