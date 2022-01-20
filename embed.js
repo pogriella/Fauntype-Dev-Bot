@@ -17,7 +17,7 @@ const help = {
                         { name: 'What it does', value: user.description },
                     )
                     .setTimestamp()
-                    .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
+                    .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'gif', dynamic: true }));
                 message.channel.send({ embeds: [helpUser] });
                 break;
             default:
@@ -31,7 +31,7 @@ const help = {
                         { name: 'menu', value: 'Brings up the main menu' },
                     )
                     .setTimestamp()
-                    .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
+                    .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'gif', dynamic: true }));
                 message.channel.send({ embeds: [helpMain] });
                 break;
         }
@@ -61,7 +61,7 @@ const user = {
             .addField('Inline field title', 'Some value here', true)
             .setImage('https://i.imgur.com/AfFp7pu.png')
             .setTimestamp()
-            .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
+            .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'gif', dynamic: true }));
         message.channel.send({ embeds: [user] });
     }
 };
@@ -87,7 +87,7 @@ const menu = {
             .addField('Inline field title', 'Some value here', true)
             .setImage('https://i.imgur.com/AfFp7pu.png')
             .setTimestamp()
-            .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
+            .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'gif', dynamic: true }));
         message.channel.send({ embeds: [menu] });
     }
 };
@@ -105,7 +105,7 @@ const prune = {
                 .setDescription('Time to prune!')
                 .setThumbnail('https://freepikpsd.com/media/2019/10/prunes-png-Transparent-Images.png')
                 .setTimestamp()
-                .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'png', dynamic: true }));
+                .setFooter(`Called by ${message.member.displayName}`, message.author.displayAvatarURL({ format: 'gif', dynamic: true }));
         if (!args || (typeof args === 'string' && !args2)) {
             message.reply('Expected usage of this command is `...prune [user] [number of messages]`.');
         } else{
