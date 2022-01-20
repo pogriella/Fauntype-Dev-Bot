@@ -12,7 +12,7 @@ client.once('ready', () => {
 	else {
 		console.log('Ready and watching ' + client.guilds.cache.size + ' guild');
 	}
-    client.user.setPresence({ activities: [{ name: 'Gasper make his session plans...', type: 'WATCHING' }], status: 'online' });
+    client.user.setPresence({ activities: [{ name: 'furries', type: 'WATCHING' }], status: 'online' });
 });
 
 client.on('guildMemberAdd', member => {
@@ -20,20 +20,44 @@ client.on('guildMemberAdd', member => {
     const general = member.guild.channels.cache.find(channel => channel.name === "general");
 
     member.roles.add(role);
-    general.send(`Welcome to FaunType\'s Dev Server, ${member}`)
+    general.send(`Welcome to FaunType\'s Dev Server, ${member}`);
 });
 
 client.on('messageReactionAdd', reaction => {
-    let thisMessage = reaction.message.id;
-    switch (thisMessage) {
-        case 'hi':
-            break;
-    default:
-        break;
+    if (!reaction.message.author.id === '877260418169577513') return;
+    const caller = reaction.message.mentions.users.first();
+    const callerMember = reaction.message.guild.members.cache.find(user => user.id === caller.id);
+    if (!reaction.users.cache.find(user => user.id === caller.id)) return;
+    if (reaction.message.content.includes("do you want to see the furry section of the Discord?")) {
+        let furryRole = reaction.message.guild.roles.cache.find(role => role.id === "917858836658929714");
+        switch (reaction.emoji.name) {
+            case '✔️':
+                callerMember.roles.add(furryRole);
+                reaction.message.reply('Unlocked!');
+                break;
+            case '❌':
+                reaction.message.reply('You\'re not a furry...');
+                break;
+            default:
+                return;
+        }
+        return;
+    }
+    else {
+        return;
     }
 });
 
 client.on('messageCreate', message => {
+    if (message.content.toLowerCase().includes('owo') && message.channelId !== '917900527738695720' && !message.content.startsWith(prefix)) {
+        if (message.member.roles.cache.some(role=>role.id==="917858836658929714")) return;
+        message.reply(`${message.author}, do you want to see the furry section of the Discord?`).then(message => {
+            message.react('✔️');
+            message.react('❌');
+        });
+        return;
+    }
+
     if (!message.content.startsWith(prefix)) return;
 
     const command = message.content.slice(prefix.length).split(/ +/).join(' ').split(' ')[0];
