@@ -1,3 +1,1 @@
-# Dungeons-Dragons-Discord-Bot
-# This is a WIP bot. Nothing is ready or functional.
-A Discord bot developed with discord.js for D&amp;D 5e
+This is a random bot for my dev server. Barely any functionality, but it helps with some of my personal Discord things.
