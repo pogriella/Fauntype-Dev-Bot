@@ -43,14 +43,6 @@ client.on('messageReactionAdd', reaction => {
         }
         return;
     }
-    else if (reaction.message.content.includes('would you like to remove your access to this channel?')) {
-        let yiffChannel = reaction.message.guild.channels.cache.find(channel => channel.id === '918167891193503754');
-        if (reaction.emoji.name === '✔️') {
-            yiffChannel.permissionOverwrites.cache.find(o => o.member === callerMember && o.id === caller.id).delete();
-            return;
-        }
-        return;
-    }
     else {
         return;
     }
@@ -62,25 +54,6 @@ client.on('messageCreate', message => {
         message.reply(`${message.author}, do you want to see the furry section of the Discord?`).then(message => {
             message.react('✔️');
             message.react('❌');
-        });
-        return;
-    }
-
-    if (message.content.toLowerCase() === 'you so musky') {
-        let member = message.member;
-        message.channel.messages.fetch({
-            limit: 10
-        }).then(messages => {
-            const usrMessages = messages.filter(message => message.author.id === member.user.id);
-            if (usrMessages.first().includes('bolgy-wolgy')) {
-                let yiffChannel = reaction.message.guild.channels.cache.find(channel => channel.id === '918167891193503754');
-                yiffChannel.permissionOverwrites.create(member.user, {
-                    SEND_MESSAGES: true
-                });
-            }
-            else {
-                return;
-            }
         });
         return;
     }
